@@ -1,20 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 
-interface Planet {
-  radius: number; // relative orbital radius (0 - 0.5)
-  size: number; // pixels
-  colorStops: [number, string][];
-  glow: string;
-  angle: number;
-  speed: number;
-  eccentricity: number;
-  spin: number;
-}
-
 interface CosmicDust {
   angle: number;
   distance: number;
   depth: number;
+}
+
+interface VinylDisc {
+  radiusFactor: number;
+  grooveCount: number;
+  baseRotation: number;
+  spinMultiplier: number;
+  labelRadiusFactor: number;
 }
 
 export function StarField() {
@@ -32,56 +29,19 @@ export function StarField() {
     const maxRadius = () => Math.max(width, height) * 0.6;
     const center = () => ({ x: width / 2, y: height / 2 });
 
-    const planets: Planet[] = [
-      {
-        radius: 0.18,
-        size: 22,
-        colorStops: [
-          [0, '#fff7ad'],
-          [0.45, '#f6ad55'],
-          [1, '#d97706'],
-        ],
-        glow: 'rgba(250, 214, 137, 0.45)',
-        angle: Math.random() * Math.PI * 2,
-        speed: 0.00065,
-        eccentricity: 0.7,
-        spin: 0.8,
-      },
-      {
-        radius: 0.28,
-        size: 30,
-        colorStops: [
-          [0, '#e0f2fe'],
-          [0.6, '#38bdf8'],
-          [1, '#0ea5e9'],
-        ],
-        glow: 'rgba(14, 165, 233, 0.4)',
-        angle: Math.random() * Math.PI * 2,
-        speed: 0.00045,
-        eccentricity: 0.55,
-        spin: -0.5,
-      },
-      {
-        radius: 0.38,
-        size: 38,
-        colorStops: [
-          [0, '#f5f3ff'],
-          [0.5, '#a855f7'],
-          [1, '#7c3aed'],
-        ],
-        glow: 'rgba(124, 58, 237, 0.35)',
-        angle: Math.random() * Math.PI * 2,
-        speed: 0.00035,
-        eccentricity: 0.65,
-        spin: 1.2,
-      },
-    ];
-
     const dust: CosmicDust[] = Array.from({ length: 180 }, () => ({
       angle: Math.random() * Math.PI * 2,
       distance: Math.random() * maxRadius(),
       depth: Math.random() * 0.8 + 0.2,
     }));
+
+    const vinyl: VinylDisc = {
+      radiusFactor: 0.42,
+      grooveCount: 45,
+      baseRotation: Math.random() * Math.PI * 2,
+      spinMultiplier: 0.35,
+      labelRadiusFactor: 0.32,
+    };
 
     let galaxyRotation = 0;
     let scrollMomentum = 0;
@@ -167,45 +127,68 @@ export function StarField() {
       });
     };
 
-    const drawPlanets = () => {
+    const drawVinyl = () => {
       const { x: cx, y: cy } = center();
-      const baseOrbit = Math.min(width, height) * 0.5;
+      const radius = Math.min(width, height) * vinyl.radiusFactor;
 
-      planets.forEach((planet) => {
-        planet.angle += (planet.speed + Math.abs(scrollMomentum) * 0.0025) * (16 + planet.radius * 20);
+      vinyl.baseRotation += 0.0015 + Math.abs(scrollMomentum) * vinyl.spinMultiplier;
 
-        const orbitRadius = baseOrbit * planet.radius;
-        const x = cx + Math.cos(planet.angle) * orbitRadius;
-        const y = cy + Math.sin(planet.angle) * orbitRadius * planet.eccentricity;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(vinyl.baseRotation + galaxyRotation * 0.4);
 
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(galaxyRotation * planet.spin);
+      const discGradient = ctx.createRadialGradient(-radius * 0.2, -radius * 0.2, radius * 0.1, 0, 0, radius);
+      discGradient.addColorStop(0, '#2e1065');
+      discGradient.addColorStop(0.35, '#111827');
+      discGradient.addColorStop(0.75, '#020617');
+      discGradient.addColorStop(1, '#000000');
 
-        const gradient = ctx.createRadialGradient(-planet.size * 0.4, -planet.size * 0.4, planet.size * 0.2, 0, 0, planet.size);
-        planet.colorStops.forEach(([stop, color]) => gradient.addColorStop(stop, color));
+      ctx.beginPath();
+      ctx.fillStyle = discGradient;
+      ctx.shadowColor = 'rgba(96, 165, 250, 0.15)';
+      ctx.shadowBlur = 24;
+      ctx.arc(0, 0, radius, 0, Math.PI * 2);
+      ctx.fill();
 
+      ctx.shadowBlur = 0;
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < vinyl.grooveCount; i++) {
+        const grooveRadius = (radius * 0.7) * (1 - i / vinyl.grooveCount * 0.9);
         ctx.beginPath();
-        ctx.fillStyle = gradient;
-        ctx.shadowColor = planet.glow;
-        ctx.shadowBlur = 18;
-        ctx.arc(0, 0, planet.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.shadowBlur = 0;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 + Math.abs(scrollMomentum) * 0.7})`;
-        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = `rgba(148, 163, 184, ${0.025 + (i / vinyl.grooveCount) * 0.08})`;
+        ctx.arc(0, 0, grooveRadius, 0, Math.PI * 2);
         ctx.stroke();
+      }
 
-        ctx.restore();
-      });
+      const labelRadius = radius * vinyl.labelRadiusFactor;
+      const labelGradient = ctx.createRadialGradient(-labelRadius * 0.3, -labelRadius * 0.3, labelRadius * 0.2, 0, 0, labelRadius);
+      labelGradient.addColorStop(0, '#f97316');
+      labelGradient.addColorStop(1, '#be185d');
+
+      ctx.beginPath();
+      ctx.fillStyle = labelGradient;
+      ctx.arc(0, 0, labelRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.fillStyle = '#0f172a';
+      ctx.arc(0, 0, labelRadius * 0.3, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.fillStyle = '#e2e8f0';
+      ctx.arc(0, 0, labelRadius * 0.08, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
     };
 
     const animate = (timestamp: number) => {
       drawBackground();
       drawGalaxyArms(timestamp * 0.001);
       drawDust();
-      drawPlanets();
+      drawVinyl();
 
       galaxyRotation += 0.0009 + scrollMomentum * 0.35;
       scrollMomentum *= 0.92;
