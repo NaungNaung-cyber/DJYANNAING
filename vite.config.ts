@@ -17,7 +17,6 @@
         'next-themes@0.4.6': 'next-themes',
         'lucide-react@0.487.0': 'lucide-react',
         'input-otp@1.4.2': 'input-otp',
-        'figma:asset/0393e9e42abe1a7723f891db3490e3d220cfbb21.png': path.resolve(__dirname, './src/assets/0393e9e42abe1a7723f891db3490e3d220cfbb21.png'),
         'embla-carousel-react@8.6.0': 'embla-carousel-react',
         'embla-carousel-autoplay@8.6.0': 'embla-carousel-autoplay',
         'cmdk@1.1.1': 'cmdk',
@@ -53,7 +52,7 @@
     },
     build: {
       target: 'esnext',
-      outDir: 'build',
+      outDir: 'dist',
     },
     server: {
       port: 3000,
