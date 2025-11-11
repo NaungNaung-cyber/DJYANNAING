@@ -27,7 +27,10 @@ export function About() {
                 <Orbit className="w-12 h-12 text-purple-400 relative animate-spin" style={{ animationDuration: '8s' }} />
               </div>
             </motion.div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2
+              className="text-4xl sm:text-5xl md:text-6xl mb-6 text-white"
+              style={{ fontFamily: '"DM Serif Text", serif' }}
+            >
               The Legacy
             </h2>
           </div>

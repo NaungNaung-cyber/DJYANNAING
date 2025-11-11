@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Instagram, Music, Mail, PhoneCall, Facebook } from 'lucide-react';
 
-const logo = new URL('../assets/0393e9e42abe1a7723f891db3490e3d220cfbb21.png', import.meta.url).href;
+const logo = new URL('../assets/logo.png', import.meta.url).href;
 
 export function Footer() {
   const socialLinks = [
@@ -32,12 +32,21 @@ export function Footer() {
             <img 
               src={logo} 
               alt="DJ YAN NAING Logo" 
-              className="w-48 h-auto mx-auto mb-6 opacity-80"
+              className="w-48 h-auto mx-auto mb-6 opacity-90 drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] drop-shadow-[0_20px_48px_rgba(0,0,0,0.45)]"
             />
-            <h3 className="text-3xl sm:text-4xl mb-4 bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
+            <h3
+              className="text-3xl sm:text-4xl mb-4 text-white"
+              style={{
+                fontFamily: '"DM Serif Text", serif',
+                textShadow: '0 8px 24px rgba(0, 0, 0, 0.55)',
+              }}
+            >
               Connect With DJ YAN NAING
             </h3>
-            <p className="text-gray-400">
+            <p
+              className="text-gray-400"
+              style={{ textShadow: '0 6px 18px rgba(0, 0, 0, 0.45)' }}
+            >
               Follow the cosmic journey through space and sound
             </p>
           </motion.div>
@@ -67,7 +76,12 @@ export function Footer() {
             viewport={{ once: true }}
             className="bg-gradient-to-r from-purple-900/20 to-cyan-900/20 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-6 sm:p-8 mb-8"
           >
-            <h4 className="text-xl mb-4 text-cyan-300">Book DJ YAN NAING</h4>
+            <h4
+              className="text-xl mb-4 text-white"
+              style={{ fontFamily: '"DM Serif Text", serif' }}
+            >
+              Book DJ YAN NAING
+            </h4>
             <p className="text-gray-400 mb-4">
               Available for festivals, clubs, and private events worldwide
             </p>

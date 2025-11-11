@@ -84,7 +84,10 @@ export function GalaxyCarousel() {
                 <Camera className="w-12 h-12 text-cyan-400 relative" />
               </div>
             </motion.div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl mb-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2
+              className="text-4xl sm:text-5xl md:text-6xl mb-4 text-white"
+              style={{ fontFamily: '"DM Serif Text", serif' }}
+            >
               Memory of Events
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">

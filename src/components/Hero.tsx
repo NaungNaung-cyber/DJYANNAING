@@ -38,8 +38,6 @@ export function Hero() {
               className="relative aspect-square mx-auto flex items-center justify-center overflow-visible"
               style={discFrame}
             >
-              <div className="absolute inset-[-32%] rounded-full bg-red-600/45 blur-[260px] opacity-95 animate-pulse" aria-hidden="true" />
-              <div className="absolute inset-[-58%] rounded-full bg-red-500/22 blur-[420px] opacity-85 animate-pulse" style={{ animationDuration: '3.6s' }} aria-hidden="true" />
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -58,12 +56,12 @@ export function Hero() {
                     hidden: { opacity: 0, y: 0 },
                     visible: { opacity: 1, y: -20 },
                   }}
-                  className="text-[min(5rem,15vw)] tracking-wider text-white font-medium"
+                  className="text-[min(4.25rem,12vw)] tracking-wider text-white font-medium"
                   style={{
                     fontFamily: '"Orbitron", sans-serif',
                     fontWeight: 800,
                     textShadow:
-                      '0 0 18px rgba(255, 0, 0, 0.95), 0 0 42px rgba(255, 0, 0, 0.75), 0 0 68px rgba(255, 0, 0, 0.55)',
+                      '0 10px 22px rgba(0, 0, 0, 0.7), 0 20px 48px rgba(0, 0, 0, 0.6), 0 34px 72px rgba(0, 0, 0, 0.45)',
                   }}
                 >
                   DJ YAN NAING
@@ -77,7 +75,7 @@ export function Hero() {
                   transition={{ duration: 0.6 }}
                   src={logo}
                   alt="DJ YAN NAING Logo"
-                  className="mx-auto drop-shadow-2xl w-[96%] sm:w-full drop-shadow-[0_0_28px_rgba(255,0,0,0.75)] drop-shadow-[0_0_52px_rgba(255,0,0,0.55)]"
+                  className="mx-auto w-[96%] sm:w-full drop-shadow-[0_18px_32px_rgba(0,0,0,0.68)] drop-shadow-[0_28px_64px_rgba(0,0,0,0.58)] drop-shadow-[0_42px_96px_rgba(0,0,0,0.45)]"
                 />
 
                 <motion.div
@@ -87,16 +85,15 @@ export function Hero() {
                   }}
                   className="relative flex flex-col items-center gap-2 text-center overflow-visible"
                 >
-                  <div className="absolute inset-[-95%] rounded-full bg-red-500/22 blur-[360px] opacity-75 animate-pulse" style={{ animationDuration: '4.4s' }} aria-hidden="true" />
                   <div className="flex items-center justify-center gap-[0.5em] text-cyan-300">
                     <Radio
-                      className="w-[min(0.5rem,2.2vw)] h-[min(0.5rem,2.2vw)] animate-pulse text-red-400 drop-shadow-[0_0_24px_rgba(255,0,0,0.9)]"
+                      className="w-[min(0.5rem,2.2vw)] h-[min(0.5rem,2.2vw)] text-cyan-300 drop-shadow-[0_10px_24px_rgba(0,0,0,0.65)]"
                     />
                     <p
                       className="text-[0.38rem] sm:text-[min(0.5rem,2.2vw)] tracking-[0.65em] uppercase whitespace-nowrap"
                       style={{
                         textShadow:
-                          '0 0 14px rgba(255, 0, 0, 0.9), 0 0 34px rgba(255, 0, 0, 0.7)',
+                          '0 8px 20px rgba(0, 0, 0, 0.68), 0 18px 36px rgba(0, 0, 0, 0.58)',
                       }}
                     >
                       DJ • Producer • 20+ Years Experience
@@ -106,7 +103,7 @@ export function Hero() {
                     className="text-gray-400 text-[min(0.5rem,2.2vw)] leading-snug text-center"
                     style={{
                       textShadow:
-                        '0 0 14px rgba(255, 0, 0, 0.75), 0 0 32px rgba(255, 0, 0, 0.65)',
+                        '0 8px 22px rgba(0, 0, 0, 0.62), 0 18px 38px rgba(0, 0, 0, 0.55)',
                     }}
                   >
                     Master of sound, pioneering the cosmic soundscape for over two decades

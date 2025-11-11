@@ -26,7 +26,10 @@ export function VideoSection() {
                 <Video className="w-12 h-12 text-pink-400 relative" />
               </div>
             </motion.div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <h2
+              className="text-4xl sm:text-5xl md:text-6xl mb-4 text-white"
+              style={{ fontFamily: '"DM Serif Text", serif' }}
+            >
               Videos
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
