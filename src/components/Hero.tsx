@@ -82,7 +82,7 @@ export function Hero() {
                 >
                   <div className="flex items-center justify-center gap-[0.5em] text-cyan-300">
                     <Radio className="w-[min(2rem,5vw)] h-[min(2rem,5vw)] animate-pulse" />
-                    <p className="text-[min(1.5rem,5vw)] tracking-widest uppercase whitespace-nowrap">
+                    <p className="text-[min(1.2rem,5vw)] tracking-widest uppercase whitespace-nowrap">
                       DJ • Producer • 20+ Years Experience
                     </p>
                   </div>
