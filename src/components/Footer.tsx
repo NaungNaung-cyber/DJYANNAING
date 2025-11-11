@@ -73,14 +73,14 @@ export function Footer() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="tel:+959000000000"
+                href="tel:+959444008116"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 rounded-full hover:from-red-400 hover:to-purple-500 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50"
               >
                 Call Now
                 <PhoneCall className="w-4 h-4" />
               </a>
               <a
-                href="mailto:booking@djyannaing.com"
+                href="mailto:djyannaing305@gmail.com"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50"
               >
                 Email
