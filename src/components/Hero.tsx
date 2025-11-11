@@ -6,7 +6,7 @@ const logo = new URL('../assets/logo.png', import.meta.url).href;
 
 export function Hero() {
   const discFrame = {
-    width: 'clamp(18rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
+    width: 'clamp(16rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
     height: 'clamp(18rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
   };
 
@@ -51,21 +51,10 @@ export function Hero() {
                 className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-2 px-3 text-center mx-auto"
                 style={innerColumn}
               >
-                <motion.img
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.8 },
-                    visible: { opacity: 1, scale: 1 },
-                  }}
-                  transition={{ duration: 0.6 }}
-                  src={logo}
-                  alt="DJ YAN NAING Logo"
-                  className="mx-auto drop-shadow-2xl w-[78%]"
-                />
-
                 <motion.h1
                   variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, y: 0 },
+                    visible: { opacity: 1, y: -20 },
                   }}
                   className="text-[min(5rem,15vw)] tracking-wider text-white font-medium"
                   style={{ fontFamily: '"Orbitron", sans-serif', fontWeight: 800 }}
@@ -73,23 +62,34 @@ export function Hero() {
                   DJ YAN NAING
                 </motion.h1>
 
+                <motion.img
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.8 },
+                    visible: { opacity: 1, scale: 1.5 },
+                  }}
+                  transition={{ duration: 0.6 }}
+                  src={logo}
+                  alt="DJ YAN NAING Logo"
+                  className="mx-auto drop-shadow-2xl w-[96%] sm:w-full"
+                />
+
                 <motion.div
                   variants={{
                     hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0 },
+                    visible: { opacity: 1, y: 20 },
                   }}
                   className="flex flex-col items-center gap-2 text-center"
                 >
                   <div className="flex items-center justify-center gap-[0.5em] text-cyan-300">
-                    <Radio className="w-[min(1.5rem,5vw)] h-[min(2rem,5vw)] animate-pulse" />
-                    <p className="text-[min(1rem,5vw)] tracking-widest uppercase whitespace-nowrap">
+                    <Radio className="w-[min(0.5rem,2.2vw)] h-[min(0.5rem,2.2vw)] animate-pulse" />
+                    <p className="text-[min(0.5rem,2.2vw)] tracking-widest uppercase whitespace-nowrap">
                       DJ • Producer • 20+ Years Experience
                     </p>
                   </div>
-                  <p className="text-gray-400 text-[min(0.95rem,3.2vw)] leading-snug text-center">
-                    Master of sound, pioneering the cosmic soundscape for over
+                  <p className="text-gray-400 text-[min(0.5rem,2.2vw)] leading-snug text-center">
+                    Master of sound, pioneering the cosmic soundscape for over two decades
                     <br />
-                    two decades
+                    
                   </p>
                 </motion.div>
               </motion.div>
