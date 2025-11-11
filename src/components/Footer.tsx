@@ -9,7 +9,7 @@ export function Footer() {
     { icon: Music, label: 'HearThis', href: 'https://hearthis.at/djyannaing/', color: 'hover:text-orange-400' },
     { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/djyannaing', color: 'hover:text-blue-400' },
     { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/real_yan_naing/?igsh=dTNhdjJkZnRsN3N6&utm_source=qr#', color: 'hover:text-pink-400' },
-    { icon: Mail, label: 'Email', href: 'mailto:booking@djyannaing.com', color: 'hover:text-cyan-400' },
+    { icon: Mail, label: 'Email', href: 'mailto:djyannaing305@gmail.com', color: 'hover:text-cyan-400' },
   ];
 
   return (
