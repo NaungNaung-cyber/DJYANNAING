@@ -6,7 +6,7 @@ const logo = new URL('../assets/logo.png', import.meta.url).href;
 
 export function Hero() {
   const discFrame = {
-    width: 'clamp(12rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
+    width: 'clamp(16rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
     height: 'clamp(18rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
   };
 
