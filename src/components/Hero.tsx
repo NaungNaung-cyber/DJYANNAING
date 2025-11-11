@@ -2,9 +2,21 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Radio } from 'lucide-react';
 
-const logo = new URL('../assets/0393e9e42abe1a7723f891db3490e3d220cfbb21.png', import.meta.url).href;
+const logo = new URL('../assets/logo.png', import.meta.url).href;
 
 export function Hero() {
+  const discFrame = {
+    width: 'clamp(18rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
+    height: 'clamp(18rem, calc(min(100vw, 100vh) * 0.7), 36rem)',
+  };
+
+  const innerColumn = {
+    width: '72%',
+    minWidth: '14rem',
+    maxWidth: '26rem',
+    transform: 'translateY(20%)',
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden snap-start snap-always">
       <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
@@ -14,7 +26,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="space-y-6"
+          className="space-y-4 max-w-[20rem] mx-auto"
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -22,51 +34,67 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex justify-center"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-red-500/50 blur-3xl rounded-full animate-pulse" />
-              <img 
-                src={logo} 
-                alt="DJ YAN NAING Logo" 
-                className="w-48 h-auto sm:w-64 md:w-80 lg:w-96 relative z-10 drop-shadow-2xl"
-              />
+            <div
+              className="relative aspect-square mx-auto flex items-center justify-center"
+              style={discFrame}
+            >
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { delayChildren: 0.7, staggerChildren: 0.15 },
+                  },
+                }}
+                className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-2 px-3 text-center mx-auto"
+                style={innerColumn}
+              >
+                <motion.img
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.8 },
+                    visible: { opacity: 1, scale: 1 },
+                  }}
+                  transition={{ duration: 0.6 }}
+                  src={logo}
+                  alt="DJ YAN NAING Logo"
+                  className="mx-auto drop-shadow-2xl w-[78%]"
+                />
+
+                <motion.h1
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  className="text-[min(5rem,15vw)] tracking-wider text-white font-medium"
+                  style={{ fontFamily: '"Orbitron", sans-serif', fontWeight: 800 }}
+                >
+                  DJ YAN NAING
+                </motion.h1>
+
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  className="flex flex-col items-center gap-2 text-center"
+                >
+                  <div className="flex items-center justify-center gap-[0.5em] text-cyan-300">
+                    <Radio className="w-[min(2rem,5vw)] h-[min(2rem,5vw)] animate-pulse" />
+                    <p className="text-[min(1.5rem,5vw)] tracking-widest uppercase whitespace-nowrap">
+                      DJ • Producer • 20+ Years Experience
+                    </p>
+                  </div>
+                  <p className="text-gray-400 text-[min(0.95rem,3.2vw)] leading-snug text-center">
+                    Master of sound, pioneering the cosmic soundscape for over
+                    <br />
+                    two decades
+                  </p>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider"
-            style={{
-              background: 'linear-gradient(to right, #ef4444, #8b5cf6, #ec4899)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            DJ YAN NAING
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
-            className="flex items-center justify-center gap-3 text-cyan-300"
-          >
-            <Radio className="w-5 h-5 animate-pulse" />
-            <p className="text-lg sm:text-xl md:text-2xl tracking-widest uppercase">
-              DJ • Producer • 20+ Years Experience
-            </p>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.4 }}
-            className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg px-4"
-          >
-            Master of sound, pioneering the cosmic soundscape for over two decades
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -75,10 +103,10 @@ export function Hero() {
             className="pt-8"
           >
             <button 
-              onClick={() => document.getElementById('music')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('legacy')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full hover:from-cyan-400 hover:to-purple-500 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50 uppercase tracking-wider"
             >
-              Enter The Universe
+              Start The Journey
             </button>
           </motion.div>
         </motion.div>

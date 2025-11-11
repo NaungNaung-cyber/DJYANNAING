@@ -62,15 +62,16 @@ export function StarField() {
     };
 
     const drawBackground = () => {
-      ctx.fillStyle = '#02010e';
+      ctx.fillStyle = '#010103';
       ctx.fillRect(0, 0, width, height);
 
       const { x: cx, y: cy } = center();
       const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(width, height));
-      gradient.addColorStop(0, 'rgba(88, 28, 135, 0.55)');
-      gradient.addColorStop(0.35, 'rgba(17, 24, 39, 0.4)');
-      gradient.addColorStop(0.75, 'rgba(2, 1, 14, 0.9)');
-      gradient.addColorStop(1, 'rgba(0, 0, 0, 1)');
+      gradient.addColorStop(0, 'rgba(180, 160, 220, 0.08)');
+      gradient.addColorStop(0.25, 'rgba(54, 34, 84, 0.2)');
+      gradient.addColorStop(0.55, 'rgba(18, 10, 28, 0.9)');
+      gradient.addColorStop(0.85, 'rgba(6, 4, 12, 0.98)');
+      gradient.addColorStop(1, 'rgba(1, 1, 3, 1)');
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -102,8 +103,8 @@ export function StarField() {
           }
         }
 
-        ctx.strokeStyle = `rgba(212, 180, 255, ${0.07 + Math.abs(scrollMomentum) * 1.5})`;
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = `rgba(120, 82, 200, ${0.05 + Math.abs(scrollMomentum) * 0.9})`;
+        ctx.lineWidth = 1.6;
         ctx.stroke();
       }
 
@@ -121,9 +122,10 @@ export function StarField() {
         const x = cx + Math.cos(particle.angle) * orbitRadius;
         const y = cy + Math.sin(particle.angle) * orbitRadius * 0.55;
 
-        const alpha = 0.2 + particle.depth * 0.5;
-        ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-        ctx.fillRect(x, y, 1.2 + particle.depth, 1.2 + particle.depth);
+        const alpha = 0.22 + particle.depth * 0.45;
+        const size = 1 + particle.depth * 0.9;
+        ctx.fillStyle = `rgba(230, 230, 245, ${alpha})`;
+        ctx.fillRect(x, y, size, size);
       });
     };
 
@@ -137,16 +139,15 @@ export function StarField() {
       ctx.translate(cx, cy);
       ctx.rotate(vinyl.baseRotation + galaxyRotation * 0.4);
 
-      const discGradient = ctx.createRadialGradient(-radius * 0.2, -radius * 0.2, radius * 0.1, 0, 0, radius);
-      discGradient.addColorStop(0, '#2e1065');
-      discGradient.addColorStop(0.35, '#111827');
-      discGradient.addColorStop(0.75, '#020617');
-      discGradient.addColorStop(1, '#000000');
+      const discGradient = ctx.createLinearGradient(-radius, -radius, radius, radius);
+      discGradient.addColorStop(0, '#020103');
+      discGradient.addColorStop(0.45, '#08040d');
+      discGradient.addColorStop(1, '#141021');
 
       ctx.beginPath();
       ctx.fillStyle = discGradient;
-      ctx.shadowColor = 'rgba(96, 165, 250, 0.15)';
-      ctx.shadowBlur = 24;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0)';
+      ctx.shadowBlur = 0;
       ctx.arc(0, 0, radius, 0, Math.PI * 2);
       ctx.fill();
 
@@ -154,17 +155,27 @@ export function StarField() {
       ctx.lineWidth = 1;
 
       for (let i = 0; i < vinyl.grooveCount; i++) {
-        const grooveRadius = (radius * 0.7) * (1 - i / vinyl.grooveCount * 0.9);
+        const progress = i / vinyl.grooveCount;
+        const grooveRadius = radius * (0.98 - progress * 0.9);
+        const radialFade = Math.sin(progress * Math.PI);
+        const baseAlpha = 0.12 + radialFade * 0.32;
+        const accent = i % 5 === 0;
+        const edgeFade = Math.pow(Math.max(1 - progress, 0), accent ? 1.2 : 1.6);
+        const alpha = Math.min((accent ? baseAlpha * 1.05 : baseAlpha) * edgeFade, 0.32);
+        ctx.lineWidth = 0.4 + radialFade * (accent ? 0.85 : 0.45);
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(148, 163, 184, ${0.025 + (i / vinyl.grooveCount) * 0.08})`;
+        ctx.strokeStyle = accent
+          ? `rgba(140, 120, 200, ${alpha})`
+          : `rgba(228, 226, 248, ${alpha})`;
         ctx.arc(0, 0, grooveRadius, 0, Math.PI * 2);
         ctx.stroke();
       }
 
       const labelRadius = radius * vinyl.labelRadiusFactor;
-      const labelGradient = ctx.createRadialGradient(-labelRadius * 0.3, -labelRadius * 0.3, labelRadius * 0.2, 0, 0, labelRadius);
-      labelGradient.addColorStop(0, '#f97316');
-      labelGradient.addColorStop(1, '#be185d');
+      const labelGradient = ctx.createLinearGradient(-labelRadius, -labelRadius, labelRadius, labelRadius);
+      labelGradient.addColorStop(0, '#22113f');
+      labelGradient.addColorStop(0.5, '#ac94f2');
+      labelGradient.addColorStop(1, '#2a174f');
 
       ctx.beginPath();
       ctx.fillStyle = labelGradient;
@@ -172,12 +183,12 @@ export function StarField() {
       ctx.fill();
 
       ctx.beginPath();
-      ctx.fillStyle = '#0f172a';
+      ctx.fillStyle = '#0a0316';
       ctx.arc(0, 0, labelRadius * 0.3, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.beginPath();
-      ctx.fillStyle = '#e2e8f0';
+      ctx.fillStyle = '#e6e4ff';
       ctx.arc(0, 0, labelRadius * 0.08, 0, Math.PI * 2);
       ctx.fill();
 

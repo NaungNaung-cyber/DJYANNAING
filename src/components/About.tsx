@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs';
 
 export function About() {
   return (
-    <section className="relative py-20 sm:py-32 snap-start snap-always">
+    <section id="legacy" className="relative py-20 sm:py-32 snap-start snap-always">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
