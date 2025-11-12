@@ -89,10 +89,10 @@ export function MusicPlayer() {
                 key={index}
                 className="bg-gradient-to-br from-purple-900/20 to-cyan-900/20 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/40 transition-all duration-300"
               >
-                <div className="text-3xl sm:text-4xl bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                <div className="text-3xl sm:text-4xl text-white mb-2" style={{ textShadow: '0 4px 12px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4)' }}>
                   {stat.value}
                 </div>
-                <div className="text-gray-400 uppercase tracking-wider text-sm">
+                <div className="text-white uppercase tracking-wider text-sm" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
                   {stat.label}
                 </div>
               </div>
