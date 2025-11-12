@@ -49,7 +49,8 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-purple-900/20 to-cyan-900/20 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 sm:p-8"
+            className="bg-gradient-to-br from-purple-900/80 to-cyan-900/80 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 sm:p-8"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
           >
             <Tabs defaultValue="life" className="w-full">
               <TabsList className="grid w-full grid-cols-3 bg-black/40 border border-purple-500/30 h-auto p-1">
@@ -178,7 +179,7 @@ export function About() {
                       <h3 className="text-xl sm:text-2xl mb-3 text-pink-300">The Craft</h3>
                       <div className="space-y-4 text-gray-300 leading-relaxed">
                         <p>
-                          His musical style blends <span className="text-pink-400">Trance</span>, <span className="text-pink-400">Progressive Trance</span>, and <span className="text-pink-400">Melodic House/Tech</span>, weaving emotional melodies with driving energy that takes audiences on an immersive journey. Whether performing in intimate clubs or massive festivals, his sets are defined by precision, emotion, and flow — a reflection of nearly two decades of experience behind the decks.
+                          His musical style blends <span className="text-yellow-400">Trance</span>, <span className="text-yellow-400">Progressive Trance</span>, and <span className="text-yellow-400">Melodic House/Tech</span>, weaving emotional melodies with driving energy that takes audiences on an immersive journey. Whether performing in intimate clubs or massive festivals, his sets are defined by precision, emotion, and flow — a reflection of nearly two decades of experience behind the decks.
                         </p>
                         <p>
                           To him, music is more than entertainment — it's a story, a connection, and a legacy that continues to inspire the next generation of Myanmar's electronic music scene.
