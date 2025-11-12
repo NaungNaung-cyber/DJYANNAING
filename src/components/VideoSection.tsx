@@ -23,16 +23,29 @@ export function VideoSection() {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-pink-500/30 blur-xl rounded-full" />
-                <Video className="w-12 h-12 text-pink-400 relative" />
+                <Video 
+                  className="w-12 h-12 text-white relative" 
+                  style={{
+                    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4))',
+                  }}
+                />
               </div>
             </motion.div>
             <h2
               className="text-4xl sm:text-5xl md:text-6xl mb-4 text-white"
-              style={{ fontFamily: '"DM Serif Text", serif' }}
+              style={{ 
+                fontFamily: '"DM Serif Text", serif',
+                textShadow: '0 8px 24px rgba(0, 0, 0, 0.7), 0 16px 48px rgba(0, 0, 0, 0.5)',
+              }}
             >
               Videos
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p 
+              className="text-white max-w-2xl mx-auto"
+              style={{
+                textShadow: '0 6px 18px rgba(0, 0, 0, 0.6), 0 12px 36px rgba(0, 0, 0, 0.4)',
+              }}
+            >
               Experience the visual journey through space and sound
             </p>
           </div>

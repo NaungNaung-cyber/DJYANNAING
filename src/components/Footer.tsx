@@ -32,20 +32,25 @@ export function Footer() {
             <img 
               src={logo} 
               alt="DJ YAN NAING Logo" 
-              className="w-48 h-auto mx-auto mb-6 opacity-90 drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] drop-shadow-[0_20px_48px_rgba(0,0,0,0.45)]"
+              className="w-48 h-auto mx-auto mb-6 opacity-90"
+              style={{
+                filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.4)) drop-shadow(0 24px 48px rgba(0, 0, 0, 0.3))',
+              }}
             />
             <h3
               className="text-3xl sm:text-4xl mb-4 text-white"
               style={{
                 fontFamily: '"DM Serif Text", serif',
-                textShadow: '0 8px 24px rgba(0, 0, 0, 0.55)',
+                textShadow: '0 8px 24px rgba(0, 0, 0, 0.7), 0 16px 48px rgba(0, 0, 0, 0.5)',
               }}
             >
               Connect With DJ YAN NAING
             </h3>
             <p
-              className="text-gray-400"
-              style={{ textShadow: '0 6px 18px rgba(0, 0, 0, 0.45)' }}
+              className="text-white"
+              style={{ 
+                textShadow: '0 6px 18px rgba(0, 0, 0, 0.6), 0 12px 36px rgba(0, 0, 0, 0.4)',
+              }}
             >
               Follow the cosmic journey through space and sound
             </p>
@@ -78,11 +83,19 @@ export function Footer() {
           >
             <h4
               className="text-xl mb-4 text-white"
-              style={{ fontFamily: '"DM Serif Text", serif' }}
+              style={{ 
+                fontFamily: '"DM Serif Text", serif',
+                textShadow: '0 6px 18px rgba(0, 0, 0, 0.6), 0 12px 36px rgba(0, 0, 0, 0.4)',
+              }}
             >
               Book DJ YAN NAING
             </h4>
-            <p className="text-gray-400 mb-4">
+            <p 
+              className="text-white mb-4"
+              style={{
+                textShadow: '0 4px 12px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4)',
+              }}
+            >
               Available for festivals, clubs, and private events worldwide
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

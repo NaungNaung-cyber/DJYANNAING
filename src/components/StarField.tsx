@@ -139,18 +139,59 @@ export function StarField() {
       ctx.translate(cx, cy);
       ctx.rotate(vinyl.baseRotation + galaxyRotation * 0.4);
 
-      const discGradient = ctx.createLinearGradient(-radius, -radius, radius, radius);
-      discGradient.addColorStop(0, '#020103');
-      discGradient.addColorStop(0.45, '#08040d');
-      discGradient.addColorStop(1, '#141021');
+      // Base purple disc
+      const baseGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
+      baseGradient.addColorStop(0, '#6B46C1');
+      baseGradient.addColorStop(0.3, '#7C3AED');
+      baseGradient.addColorStop(0.6, '#8B5CF6');
+      baseGradient.addColorStop(1, '#9333EA');
 
       ctx.beginPath();
-      ctx.fillStyle = discGradient;
-      ctx.shadowColor = 'rgba(0, 0, 0, 0)';
-      ctx.shadowBlur = 0;
+      ctx.fillStyle = baseGradient;
       ctx.arc(0, 0, radius, 0, Math.PI * 2);
       ctx.fill();
 
+      // Create marbled/swirled effect with overlapping patterns
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2 + vinyl.baseRotation * 0.5;
+        const swirlRadius = radius * (0.3 + (i % 3) * 0.2);
+        const swirlX = Math.cos(angle) * swirlRadius * 0.4;
+        const swirlY = Math.sin(angle) * swirlRadius * 0.4;
+        
+        const swirlGradient = ctx.createRadialGradient(swirlX, swirlY, 0, swirlX, swirlY, radius * 0.6);
+        const purpleShade = i % 3 === 0 ? '#A855F7' : i % 3 === 1 ? '#9333EA' : '#7C3AED';
+        swirlGradient.addColorStop(0, purpleShade);
+        swirlGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.3)');
+        swirlGradient.addColorStop(1, 'rgba(139, 92, 246, 0.1)');
+        
+        ctx.globalCompositeOperation = 'multiply';
+        ctx.beginPath();
+        ctx.fillStyle = swirlGradient;
+        ctx.arc(swirlX, swirlY, radius * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Add white streaks for marbled effect
+      ctx.globalCompositeOperation = 'screen';
+      for (let i = 0; i < 12; i++) {
+        const angle = (i / 12) * Math.PI * 2 + vinyl.baseRotation * 0.3;
+        const streakX = Math.cos(angle) * radius * (0.2 + (i % 4) * 0.15);
+        const streakY = Math.sin(angle) * radius * (0.2 + (i % 4) * 0.15);
+        
+        const streakGradient = ctx.createRadialGradient(streakX, streakY, 0, streakX, streakY, radius * 0.3);
+        streakGradient.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+        streakGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
+        streakGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        
+        ctx.beginPath();
+        ctx.fillStyle = streakGradient;
+        ctx.arc(streakX, streakY, radius * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+
+      // Draw grooves
       ctx.shadowBlur = 0;
       ctx.lineWidth = 1;
 
@@ -158,39 +199,57 @@ export function StarField() {
         const progress = i / vinyl.grooveCount;
         const grooveRadius = radius * (0.98 - progress * 0.9);
         const radialFade = Math.sin(progress * Math.PI);
-        const baseAlpha = 0.12 + radialFade * 0.32;
+        const baseAlpha = 0.08 + radialFade * 0.15;
         const accent = i % 5 === 0;
         const edgeFade = Math.pow(Math.max(1 - progress, 0), accent ? 1.2 : 1.6);
-        const alpha = Math.min((accent ? baseAlpha * 1.05 : baseAlpha) * edgeFade, 0.32);
-        ctx.lineWidth = 0.4 + radialFade * (accent ? 0.85 : 0.45);
+        const alpha = Math.min((accent ? baseAlpha * 1.05 : baseAlpha) * edgeFade, 0.2);
+        ctx.lineWidth = 0.3 + radialFade * (accent ? 0.6 : 0.3);
         ctx.beginPath();
         ctx.strokeStyle = accent
-          ? `rgba(140, 120, 200, ${alpha})`
-          : `rgba(228, 226, 248, ${alpha})`;
+          ? `rgba(100, 80, 180, ${alpha})`
+          : `rgba(200, 190, 230, ${alpha})`;
         ctx.arc(0, 0, grooveRadius, 0, Math.PI * 2);
         ctx.stroke();
       }
 
       const labelRadius = radius * vinyl.labelRadiusFactor;
+      
+      // Yellowish label background with linear gradient - lighter in middle, stronger on edges
       const labelGradient = ctx.createLinearGradient(-labelRadius, -labelRadius, labelRadius, labelRadius);
-      labelGradient.addColorStop(0, '#22113f');
-      labelGradient.addColorStop(0.5, '#ac94f2');
-      labelGradient.addColorStop(1, '#2a174f');
-
+      labelGradient.addColorStop(0, '#CD853F');
+      labelGradient.addColorStop(0.5, '#FFFACD');
+      labelGradient.addColorStop(1, '#CD853F');
+      
       ctx.beginPath();
       ctx.fillStyle = labelGradient;
       ctx.arc(0, 0, labelRadius, 0, Math.PI * 2);
       ctx.fill();
 
+      // Spindle hole - cut through the label and disc (like real vinyl)
+      const holeRadius = labelRadius * 0.15;
+      
+      // Create a hole by using composite operation to cut through everything
+      ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
-      ctx.fillStyle = '#0a0316';
-      ctx.arc(0, 0, labelRadius * 0.3, 0, Math.PI * 2);
+      ctx.arc(0, 0, holeRadius, 0, Math.PI * 2);
       ctx.fill();
-
+      
+      // Reset composite operation
+      ctx.globalCompositeOperation = 'source-over';
+      
+      // Add inner rim/shadow to make hole look more realistic and three-dimensional
       ctx.beginPath();
-      ctx.fillStyle = '#e6e4ff';
-      ctx.arc(0, 0, labelRadius * 0.08, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+      ctx.lineWidth = 1.5;
+      ctx.arc(0, 0, holeRadius, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Add subtle inner highlight
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.lineWidth = 0.5;
+      ctx.arc(0, 0, holeRadius * 0.95, 0, Math.PI * 2);
+      ctx.stroke();
 
       ctx.restore();
     };

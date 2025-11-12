@@ -24,12 +24,21 @@ export function About() {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-purple-500/30 blur-xl rounded-full" />
-                <Orbit className="w-12 h-12 text-purple-400 relative animate-spin" style={{ animationDuration: '8s' }} />
+                <Orbit 
+                  className="w-12 h-12 text-white relative animate-spin" 
+                  style={{ 
+                    animationDuration: '8s',
+                    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4))',
+                  }} 
+                />
               </div>
             </motion.div>
             <h2
               className="text-4xl sm:text-5xl md:text-6xl mb-6 text-white"
-              style={{ fontFamily: '"DM Serif Text", serif' }}
+              style={{ 
+                fontFamily: '"DM Serif Text", serif',
+                textShadow: '0 8px 24px rgba(0, 0, 0, 0.7), 0 16px 48px rgba(0, 0, 0, 0.5)',
+              }}
             >
               The Legacy
             </h2>

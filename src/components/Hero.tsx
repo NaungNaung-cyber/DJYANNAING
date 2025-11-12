@@ -75,7 +75,10 @@ export function Hero() {
                   transition={{ duration: 0.6 }}
                   src={logo}
                   alt="DJ YAN NAING Logo"
-                  className="mx-auto w-[96%] sm:w-full drop-shadow-[0_18px_32px_rgba(0,0,0,0.68)] drop-shadow-[0_28px_64px_rgba(0,0,0,0.58)] drop-shadow-[0_42px_96px_rgba(0,0,0,0.45)]"
+                  className="mx-auto w-[96%] sm:w-full"
+                  style={{
+                    filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.4)) drop-shadow(0 24px 48px rgba(0, 0, 0, 0.3))',
+                  }}
                 />
 
                 <motion.div
@@ -85,12 +88,12 @@ export function Hero() {
                   }}
                   className="relative flex flex-col items-center gap-2 text-center overflow-visible"
                 >
-                  <div className="flex items-center justify-center gap-[0.5em] text-cyan-300">
+                  <div className="flex items-center justify-center gap-[0.5em] text-purple-300">
                     <Radio
-                      className="w-[min(0.5rem,2.2vw)] h-[min(0.5rem,2.2vw)] text-cyan-300 drop-shadow-[0_10px_24px_rgba(0,0,0,0.65)]"
+                      className="w-[min(0.5rem,2.2vw)] h-[min(0.5rem,2.2vw)] text-purple-300 drop-shadow-[0_10px_24px_rgba(0,0,0,0.65)]"
                     />
                     <p
-                      className="text-[0.38rem] sm:text-[min(0.5rem,2.2vw)] tracking-[0.65em] uppercase whitespace-nowrap"
+                      className="text-[0.38rem] sm:text-[min(0.5rem,2.2vw)] tracking-[0.65em] uppercase whitespace-nowrap text-purple-300"
                       style={{
                         textShadow:
                           '0 8px 20px rgba(0, 0, 0, 0.68), 0 18px 36px rgba(0, 0, 0, 0.58)',
@@ -100,7 +103,7 @@ export function Hero() {
                     </p>
                   </div>
                   <p
-                    className="text-gray-400 text-[min(0.5rem,2.2vw)] leading-snug text-center"
+                    className="text-purple-200 text-[min(0.5rem,2.2vw)] leading-snug text-center"
                     style={{
                       textShadow:
                         '0 8px 22px rgba(0, 0, 0, 0.62), 0 18px 38px rgba(0, 0, 0, 0.55)',
