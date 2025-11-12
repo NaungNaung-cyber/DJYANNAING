@@ -116,11 +116,14 @@ export function Footer() {
             </div>
           </motion.div>
 
-          <div className="text-gray-500 text-sm space-y-2">
+          <div className="text-white text-sm space-y-2" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
             <p>© 2025 DJ YAN NAING. All rights reserved.</p>
             <p className="flex items-center justify-center gap-2">
               <span>20+ Years of sonic exploration</span>
               <span className="inline-block animate-pulse">✨</span>
+            </p>
+            <p className="text-white/80 text-xs mt-4">
+              Developed by <span className="font-semibold">ORBIC M</span>
             </p>
           </div>
         </motion.div>
