@@ -50,7 +50,7 @@ export function VideoSection() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,29 @@ export function VideoSection() {
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/rkYqdlzuI68?si=Op3Bvq5-bu19264l"
+                  src="https://www.youtube.com/embed/Z-DXsngZ0pA?modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3&fs=0&playsinline=1"
+                  title="DJ Yan Naing - Performance"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  className="w-full aspect-video"
+                />
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-pink-900/20 to-purple-900/20 backdrop-blur-sm border border-pink-500/30 rounded-2xl p-4 sm:p-6 shadow-lg shadow-pink-500/10"
+            >
+              <div className="relative rounded-2xl overflow-hidden bg-black/50">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/rkYqdlzuI68?modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3&fs=0&playsinline=1"
                   title="DJ Yan Naing - Live Performance"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
